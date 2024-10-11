@@ -16,6 +16,7 @@ type RowType = {
   name: string
   description: string
   email: string
+  column1: number
 }
 
 export default function Home() {
@@ -58,22 +59,24 @@ export default function Home() {
       {!!rows?.total && (
         <div className="flex w-full flex-col gap-2">
           <h1 className="text-center text-2xl">Total rows: {rows.total}</h1>
-
-          {rows.results.map(row => {
-            const {name, email, description, image} = row.values as RowType
-            return (
-              <div key={row.id} className="flex items-center gap-4 bg-gray-100">
-                <p>{name}</p>
-                <p>{email}</p>
-                <div dangerouslySetInnerHTML={{__html: description}} />
-                {image && (
-                  <div className="w-80">
-                    <Image src={image.url} alt={image.altText} width={image.width} height={image.height} className="h-full w-full object-cover" />
-                  </div>
-                )}
-              </div>
-            )
-          })}
+          <div className="mx-10">
+            {rows.results.map(row => {
+              const {name, email, description, image, column1} = row.values as RowType
+              return (
+                <div key={row.id} className="flex items-center gap-4 bg-gray-100">
+                  <p className="font-bold px-2">{column1}</p>
+                  <p>{name}</p>
+                  <p>{email}</p>
+                  <div dangerouslySetInnerHTML={{__html: description}} />
+                  {image && (
+                    <div className="w-80">
+                      <Image src={image.url} alt={image.altText} width={image.width} height={image.height} className="h-full w-full object-cover" />
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
         </div>
       )}
     </div>
