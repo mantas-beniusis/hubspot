@@ -4,8 +4,6 @@ import {Client} from '@hubspot/api-client'
 const TABLE_NAME = 'ggggg'
 
 export const GET = async () => {
-  console.log(' called')
-
   try {
     const hubspotClient = new Client({accessToken: process.env.HUBSPOT_API_KEY})
     // console.log('process.env.HUBSPOT_API_KEY', process.env.HUBSPOT_API_KEY)
